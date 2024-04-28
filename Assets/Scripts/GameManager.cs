@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private Vector3 savePoint2;
     private Vector3 savePoint3;
     private PlayerSystem playerSystem;
+    private IngameUI ingameUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
         savePoint2 = save2.transform.position;
         savePoint3 = save3.transform.position;
         playerSystem = GameObject.Find("Player").GetComponent<PlayerSystem>();
+        ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
     }
 
     // Update is called once per frame
@@ -31,10 +33,10 @@ public class GameManager : MonoBehaviour
     void OnTriggerEnter(Collider other) {
     if(other.name == "Player") {
         Debug.Log(--playerSystem.life);
+        ingameUI.LoseLife(playerSystem.life); // Update UI
         switch(playerSystem.save) {
             case 0:
-                other.transform.position = new Vector3(10f, 1.11f, 28.91f);
-                Debug.Log(savePoint1);
+                other.transform.position = new Vector3(10f, 2f, 28.91f);
                 break;
             case 1:
                 Debug.Log("1");

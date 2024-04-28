@@ -7,10 +7,11 @@ public class PlayerSystem : MonoBehaviour
     public int save = 0; // Must start at 0
     public int life = 9; // Start at 9
     public int score = 0;
+    private IngameUI ingameUI;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class PlayerSystem : MonoBehaviour
         // When player hits a collectable item, score will be increased
         if(other.tag == "Collectable" ) {
             Debug.Log(++score);
+            ingameUI.getScore(score); // Update UI
             other.gameObject.SetActive(false);
         }
     }
