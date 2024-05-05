@@ -1,34 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     Rigidbody rigidBody;
     bool isJump;
-    public float jumpPower;
-    public float impulseForce = 170000.0f;
-    public float impulseTorque = 3000.0f;
+    public float jumpPower = 1500f;
+    public float moveSpeed = 5f;
+    public float dragValue = 5f; // 추가: 가속도를 없애기 위한 drag 값
+
     void Awake()
     {
         isJump = false;
         rigidBody = GetComponent<Rigidbody>();
+        rigidBody.drag = dragValue; // 추가: 가속도를 없애기 위해 drag 값을 설정
     }
 
     void Update()
     {
-        Vector3 input = new Vector3(0, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (input.magnitude > 0.001)
-        {
-            rigidBody.AddRelativeTorque(new Vector3(0, input.y * impulseTorque * Time.deltaTime, 0));
-            rigidBody.AddRelativeForce(new Vector3(0, 0, input.z * impulseForce * Time.deltaTime));
-        }
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Vector3 vec = new Vector3(h, 0, v) * moveSpeed * Time.deltaTime; // 수정: 속도를 조절하기 위해 moveSpeed를 곱함
+        rigidBody.AddForce(vec, ForceMode.Impulse);
 
-        if(Input.GetButtonDown("Jump") && !isJump){
+        if (Input.GetButtonDown("Jump") && !isJump)
+        {
             isJump = true;
-            rigidBody.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.parent.CompareTag("Ground"))
+        {
+            isJump = false;
         }
     }
 }
