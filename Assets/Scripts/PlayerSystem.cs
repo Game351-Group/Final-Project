@@ -13,7 +13,7 @@ public class PlayerSystem : MonoBehaviour
     void Start()
     {
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
-        gameManager = GameObject.Find("Plane (1)").GetComponent<GameManager>();
+        gameManager = GameObject.Find("Fog").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -28,21 +28,20 @@ public class PlayerSystem : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         // When player hits a cat tower, make it as a last save point, and disable this object
         if(other.name == "CatTower1" && save < 1) {
-            Debug.Log(save = 1);
+            save = 1;
             other.gameObject.SetActive(false);
         }else if(other.name == "CatTower2" && save < 2) {
-            Debug.Log(save = 2);
+            save = 2;
             other.gameObject.SetActive(false);
         }else if(other.name == "CatTower3" && save < 3) {
-            Debug.Log(save = 3);
+            save = 3;
             other.gameObject.SetActive(false);
         }
         // More Save Points can be added
 
         // When player hits a collectable item, score will be increased
         if(other.tag == "Collectable" ) {
-            Debug.Log(++score);
-            ingameUI.getScore(score); // Update UI
+            ingameUI.getScore(++score); // Update UI
             other.gameObject.SetActive(false);
         }
 

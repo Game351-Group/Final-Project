@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Collectable
-  - Water
-  - CatHouse
-  - Grass
-  - Snow
-  - Ground
-  - Obstacles
+  tags: []
   layers:
   - Default
   - TransparentFX

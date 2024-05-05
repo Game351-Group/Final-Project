@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Saw : MonoBehaviour
+public class SawMoving : MonoBehaviour
 {
     public Vector3 target;
     Vector3 start;

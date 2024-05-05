@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         Rigidbody rb = playerObject.GetComponent<Rigidbody>();
         switch(playerSystem.save) {
             case 0:
-                playerObject.transform.position = new Vector3(10f, 2f, 28.91f);
+                playerObject.transform.position = new Vector3(10f, 1f, 28.91f);
                 break;
             case 1:
                 playerObject.transform.position = savePoint1;
