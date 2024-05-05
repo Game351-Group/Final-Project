@@ -43,10 +43,5 @@ public class PlayerSystem : MonoBehaviour
             ingameUI.getScore(score); // Update UI
             other.gameObject.SetActive(false);
         }
-
-        if(other.tag == "Obstacles" ) {
-            ingameUI.LoseLife(--life);
-            
-        }
     }
 }
