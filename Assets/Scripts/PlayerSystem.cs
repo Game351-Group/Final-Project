@@ -8,10 +8,12 @@ public class PlayerSystem : MonoBehaviour
     public int life = 9; // Start at 9
     public int score = 0;
     private IngameUI ingameUI;
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
+        gameManager = GameObject.Find("Plane (1)").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,12 @@ public class PlayerSystem : MonoBehaviour
             Debug.Log(++score);
             ingameUI.getScore(score); // Update UI
             other.gameObject.SetActive(false);
+        }
+
+        // When player hits a obstacle, player loses 1 life and respawn
+        if(other.tag == "Obstacles" ) {
+            ingameUI.LoseLife(--life);
+            gameManager.respawn(gameObject);
         }
     }
 }

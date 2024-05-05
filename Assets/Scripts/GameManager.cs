@@ -31,29 +31,34 @@ public class GameManager : MonoBehaviour
     // This script should be added into water terrain
     // When player falls into water, life points are reduced and player respawn at its last save point
     void OnTriggerEnter(Collider other) {
-    if(other.name == "Player") {
-        Debug.Log(--playerSystem.life);
-        ingameUI.LoseLife(playerSystem.life); // Update UI
+        if(other.name == "Player") {
+            ingameUI.LoseLife(--playerSystem.life); // Update UI
+            respawn(other.gameObject);
+        }
+    }
+
+    public void respawn(GameObject playerObject){
+        Rigidbody rb = playerObject.GetComponent<Rigidbody>();
         switch(playerSystem.save) {
             case 0:
-                other.transform.position = new Vector3(10f, 2f, 28.91f);
+                playerObject.transform.position = new Vector3(10f, 2f, 28.91f);
                 break;
             case 1:
-                Debug.Log("1");
-                other.transform.position = savePoint1;
+                playerObject.transform.position = savePoint1;
                 break;
             case 2:
-                Debug.Log("2");
-                other.transform.position = savePoint2;
+                playerObject.transform.position = savePoint2;
                 break;
             case 3:
-                Debug.Log("3");
-                other.transform.position = savePoint3;
+                playerObject.transform.position = savePoint3;
                 break;
             default:
                 Debug.Log("Save Point value is wrong! The initial value has to be 0");
-                break;
-            }
+                break;  
         }
+
+        // Make player stops after respawn
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
