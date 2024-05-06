@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSystem : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerSystem : MonoBehaviour
     void Start()
     {
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
-        gameManager = GameObject.Find("Fog").GetComponent<GameManager>();
+        gameManager = GameObject.Find("Water").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -49,6 +50,23 @@ public class PlayerSystem : MonoBehaviour
         if(other.tag == "Obstacles" ) {
             ingameUI.LoseLife(--life);
             gameManager.respawn(gameObject);
+        }
+
+        if(other.tag == "Water"){
+            StartCoroutine(ChangeImage());
+            ingameUI.LoseLife(--life);
+            gameManager.respawn(gameObject);
+        }
+    }
+
+    private IEnumerator ChangeImage() {
+        Image underwaterImage = GameObject.Find("Underwater").GetComponent<Image>();
+        if (underwaterImage != null) {
+            underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0.9f);
+            yield return new WaitForSeconds(1);
+            underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0f);
+        } else {
+            Debug.LogError("Underwater image not found!");
         }
     }
 }
