@@ -13,21 +13,27 @@ public class GameManager : MonoBehaviour
     {
         playerSystem = GameObject.Find("Player").GetComponent<PlayerSystem>();
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
-    public void respawn(GameObject playerObject) {
-        StartCoroutine(StartRespawn(playerObject));
+    public void respawn(GameObject playerObject, bool water) {
+        StartCoroutine(StartRespawn(playerObject, water));
     }
 
-    IEnumerator StartRespawn(GameObject playerObject) {
-        yield return new WaitForSeconds(1);
-
+    IEnumerator StartRespawn(GameObject playerObject, bool water) {
+        if(water){
+            yield return new WaitForSeconds(1);
+        }
         Rigidbody rb = playerObject.GetComponent<Rigidbody>();
 
         switch (playerSystem.save) {

@@ -49,13 +49,13 @@ public class PlayerSystem : MonoBehaviour
         // When player hits a obstacle, player loses 1 life and respawn
         if(other.tag == "Obstacles" ) {
             ingameUI.LoseLife(--life);
-            gameManager.respawn(gameObject);
+            gameManager.respawn(gameObject, false);
         }
 
         if(other.tag == "Water"){
             StartCoroutine(ChangeImage());
             ingameUI.LoseLife(--life);
-            gameManager.respawn(gameObject);
+            gameManager.respawn(gameObject, true);
         }
     }
 
