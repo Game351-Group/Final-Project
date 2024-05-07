@@ -22,6 +22,7 @@ public class PlayerSounds : MonoBehaviour
     private AudioSource hit;
     private bool grass = false;
     private bool snow = false;
+    private bool ground = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,11 @@ public class PlayerSounds : MonoBehaviour
             {
                 grassWalk.enabled = false;
                 snowWalk.enabled = true;
+            }
+            if (ground == true)
+            {
+                grassWalk.enabled = false;
+                snowWalk.enabled = false;
             }
         }
         else
@@ -82,16 +88,19 @@ public class PlayerSounds : MonoBehaviour
         {
             grass = true;
             snow = false;
+            ground = false;
         }
         else if (collision.gameObject.tag == "Snow")
         {
             grass = false;
             snow = true;
+            ground = false;
         }
-        else
+        else if (collision.gameObject.tag == "Ground")
         {
             grass = false;
             snow = false;
+            ground = true;
         }
     }
 }
