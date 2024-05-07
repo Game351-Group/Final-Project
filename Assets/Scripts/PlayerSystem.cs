@@ -8,14 +8,16 @@ public class PlayerSystem : MonoBehaviour
 {
     public int save = 0; // Must start at 0
     public int life = 9; // Start at 9
-    public int score = 0;
+    public int score = 0; // Must start at 0
     private IngameUI ingameUI;
     private GameManager gameManager;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
         gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -49,10 +51,12 @@ public class PlayerSystem : MonoBehaviour
 
         // When player hits a obstacle, player loses 1 life and respawn
         if(other.tag == "Obstacles" ) {
+            StartCoroutine(LoseControl());
             ingameUI.LoseLife(--life);
             gameManager.respawn(gameObject, false);
         }
 
+        // When player falls into water, player loses 1 life and respawn
         if(other.tag == "Water"){
             StartCoroutine(ChangeImage());
             ingameUI.LoseLife(--life);
@@ -60,14 +64,22 @@ public class PlayerSystem : MonoBehaviour
         }
     }
 
+    // To show the underwater image
     private IEnumerator ChangeImage() {
         Image underwaterImage = GameObject.Find("Underwater").GetComponent<Image>();
         if (underwaterImage != null) {
             underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0.9f);
+            StartCoroutine(LoseControl());
             yield return new WaitForSeconds(1);
             underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0f);
-        } else {
-            Debug.LogError("Underwater image not found!");
         }
+    }
+
+    // Player will lose control for a sec
+    private IEnumerator LoseControl(){
+        player.enabled = false;
+        yield return new WaitForSeconds(1);
+        player.enabled = true;
+        Debug.Log("hi");
     }
 }

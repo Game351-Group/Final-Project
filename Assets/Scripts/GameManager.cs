@@ -26,10 +26,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Respawn
     public void respawn(GameObject playerObject, bool water) {
         StartCoroutine(StartRespawn(playerObject, water));
     }
 
+    // After die, player will respawn after 1 sec
     IEnumerator StartRespawn(GameObject playerObject, bool water) {
         if(water){
             yield return new WaitForSeconds(1);
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         switch (playerSystem.save) {
             case 0:
-                playerObject.transform.position = new Vector3(10f, 1f, 28.91f);
+                playerObject.transform.position = new Vector3(10f, 1f, 28.91f); // Start Location
                 break;
             case 1:
                 playerObject.transform.position = save1.transform.position;
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Save Point value is wrong! The initial value has to be 0");
                 break;
         }
-
+        // To stop previous movement
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }

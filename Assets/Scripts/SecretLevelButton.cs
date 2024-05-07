@@ -23,14 +23,15 @@ public class SecretLevelButton : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(playerSystem.score == 14){
-            Debug.Log("True");
+        // If player collected all fishes in the map
+        if(playerSystem.score == 16){
             SceneManager.LoadScene("HiddenLevel");
         }else{
             StartCoroutine(ShowMessage());
         }
     }
 
+    // Show the text box and its background
     IEnumerator ShowMessage()
     {
         HiddenText.gameObject.SetActive(true);

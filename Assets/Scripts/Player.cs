@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody rigidBody;
+    private Rigidbody rigidBody;
     private bool isGrounded;
     private bool isCloud;
     public float jumpPower = 100f;
     public float moveSpeed = 100f;
-    public float dragValue = 5f;
 
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        rigidBody.drag = dragValue;
     }
 
     void Update()

@@ -20,6 +20,7 @@ public class Obstacle : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // When player hits obstacles
         hit.PlayOneShot(hit.clip, .7f);
     }
 }

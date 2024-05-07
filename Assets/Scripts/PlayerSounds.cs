@@ -32,6 +32,7 @@ public class PlayerSounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Walking Sound
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             if (grass == true)
@@ -55,6 +56,8 @@ public class PlayerSounds : MonoBehaviour
             grassWalk.enabled = false;
             snowWalk.enabled = false;
         }
+
+        // Meow Sound
         if (Input.GetKeyDown(KeyCode.M))
         {
             AudioClip meow = meows[Random.Range(0, meows.Length)];
@@ -64,6 +67,7 @@ public class PlayerSounds : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // Interacting Sounds
         if (other.tag == "Water")
         {
             Instantiate(splashVFX, transform.position, splashVFX.transform.rotation);
