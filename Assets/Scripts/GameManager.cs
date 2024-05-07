@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject save1, save2, save3;
     private PlayerSystem playerSystem;
     private IngameUI ingameUI;
+    private IngameUI ingameUI1;
     // Start is called before the first frame update
     void Start()
     {
