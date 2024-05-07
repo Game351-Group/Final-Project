@@ -53,10 +53,8 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             if(isCloud){
-                Debug.Log("Yes");
                 rigidBody.AddForce(Vector3.up * jumpPower * 2f, ForceMode.Impulse);
             }else{
-                Debug.Log("No");
                 rigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             }
         }
