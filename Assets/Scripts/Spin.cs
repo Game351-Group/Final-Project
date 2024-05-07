@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
+    // This script is for rotating the fish
     // Start is called before the first frame update
     void Start()
     {
