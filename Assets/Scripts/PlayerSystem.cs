@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerSystem : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerSystem : MonoBehaviour
     {
         // Add Event when player has no life point
         if(life == 0){
-            Debug.Log("Dead");
+            SceneManager.LoadScene("Lose");
         }
     }
 
