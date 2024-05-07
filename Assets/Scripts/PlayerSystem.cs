@@ -15,7 +15,7 @@ public class PlayerSystem : MonoBehaviour
     void Start()
     {
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
-        gameManager = GameObject.Find("Water").GetComponent<GameManager>();
+        gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

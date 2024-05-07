@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody rigidBody;
-    bool isGrounded;
+    private bool isGrounded;
+    private bool isCloud;
     public float jumpPower = 100f;
     public float moveSpeed = 100f;
     public float dragValue = 5f;
@@ -51,7 +52,13 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            if(isCloud){
+                Debug.Log("Yes");
+                rigidBody.AddForce(Vector3.up * jumpPower * 2f, ForceMode.Impulse);
+            }else{
+                Debug.Log("No");
+                rigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            }
         }
     }
 
@@ -61,6 +68,10 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
         }
+        
+        if(collision.transform.parent.name == "Clouds"){
+            isCloud = true;
+        }
     }
 
     void OnCollisionExit(Collision collision)
@@ -68,6 +79,10 @@ public class Player : MonoBehaviour
         if (collision.transform.parent.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+
+        if(collision.transform.parent.name == "Clouds"){
+            isCloud = false;
         }
     }
 }
