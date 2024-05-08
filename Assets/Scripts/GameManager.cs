@@ -2,27 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    public GameObject save1, save2, save3;
+    [SerializeField]
+    private AudioSource click;
+    [SerializeField]
+    private GameObject save1, save2, save3;
     private PlayerSystem playerSystem;
     private IngameUI ingameUI;
+    public GameObject pauseUI;
     // Start is called before the first frame update
     void Start()
     {
         playerSystem = GameObject.Find("Player").GetComponent<PlayerSystem>();
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // ESC to pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            if (Time.timeScale == 1)
+            {
+                Cursor.visible = true;
+                PauseGame();
+            }
+            else
+            {
+                Cursor.visible = false;
+                ResumeGame();
+            }
         }
     }
 
@@ -58,5 +71,31 @@ public class GameManager : MonoBehaviour
         // To stop previous movement
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    private void PauseGame()
+    {
+        pauseUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        click.PlayOneShot(click.clip, .7f);
+        pauseUI.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void LoadMainMenu()
+    {
+        click.PlayOneShot(click.clip, .7f);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ExitGame()
+    {
+        click.PlayOneShot(click.clip, .7f);
+        Application.Quit();
     }
 }

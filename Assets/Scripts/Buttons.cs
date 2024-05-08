@@ -9,7 +9,6 @@ public class Buttons : MonoBehaviour
     private AudioSource click;
     void Start(){
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
     public void LoadGame()
     {

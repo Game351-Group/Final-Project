@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSystem : MonoBehaviour
 {
+    [SerializeField]
+    private Text HiddenText;
+    [SerializeField]
+    private Image HiddenBack;
+
+    private float displayTime = 2.0f;
     public int save = 0; // Must start at 0
     public int life = 9; // Start at 9
     public int score = 0; // Must start at 0
@@ -41,7 +47,6 @@ public class PlayerSystem : MonoBehaviour
             save = 3;
             other.gameObject.SetActive(false);
         }
-        // More Save Points can be added
 
         // When player hits a collectable item, score will be increased
         if(other.tag == "Collectable" ) {
@@ -62,6 +67,14 @@ public class PlayerSystem : MonoBehaviour
             ingameUI.LoseLife(--life);
             gameManager.respawn(gameObject, true);
         }
+
+        if(other.name == "hidden"){
+            if(score == 16){
+            SceneManager.LoadScene("HiddenLevel");
+            }else{
+                StartCoroutine(ShowMessage());
+            }
+        }
     }
 
     // To show the underwater image
@@ -80,6 +93,14 @@ public class PlayerSystem : MonoBehaviour
         player.enabled = false;
         yield return new WaitForSeconds(1);
         player.enabled = true;
-        Debug.Log("hi");
+    }
+
+    private IEnumerator ShowMessage()
+    {
+        HiddenText.gameObject.SetActive(true);
+        HiddenBack.gameObject.SetActive(true);
+        yield return new WaitForSeconds(displayTime);
+        HiddenText.gameObject.SetActive(false);
+        HiddenBack.gameObject.SetActive(false);
     }
 }
