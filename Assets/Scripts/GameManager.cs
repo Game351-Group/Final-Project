@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource click;
     [SerializeField]
-    private GameObject save1, save2, save3;
+    private GameObject save1, save2, save3, save4, save5;
     private PlayerSystem playerSystem;
     private IngameUI ingameUI;
     public GameObject pauseUI;
@@ -34,26 +34,42 @@ public class GameManager : MonoBehaviour
             else
             {
                 Cursor.visible = false;
-                ResumeGame();
+                pauseUI.SetActive(false);
+                Time.timeScale = 1;
             }
         }
     }
 
     // Respawn
-    public void respawn(GameObject playerObject, bool water) {
-        StartCoroutine(StartRespawn(playerObject, water));
+    public void respawn(GameObject playerObject, bool water, bool hidden) {
+        StartCoroutine(StartRespawn(playerObject, water, hidden));
     }
 
     // After die, player will respawn after 1 sec
-    IEnumerator StartRespawn(GameObject playerObject, bool water) {
+    IEnumerator StartRespawn(GameObject playerObject, bool water, bool hidden) {
         if(water){
             yield return new WaitForSeconds(1);
         }
         Rigidbody rb = playerObject.GetComponent<Rigidbody>();
-
-        switch (playerSystem.save) {
+        if(hidden){
+            switch (playerSystem.save) {
             case 0:
-                playerObject.transform.position = new Vector3(10f, 1f, 28.91f); // Start Location
+                playerObject.transform.position = new Vector3(44.02f, 16.13f, -0.02f); // Hidden Start Location
+                break;
+            case 1:
+                playerObject.transform.position = save1.transform.position;
+                break;
+            case 2:
+                playerObject.transform.position = save2.transform.position;
+                break;
+            default:
+                Debug.Log("Save Point value is wrong! The initial value has to be 0");
+                break;
+            }
+        }else{
+            switch (playerSystem.save) {
+            case 0:
+                playerObject.transform.position = new Vector3(29.49f, 4.877f, 26.64f); // Start Location
                 break;
             case 1:
                 playerObject.transform.position = save1.transform.position;
@@ -64,9 +80,16 @@ public class GameManager : MonoBehaviour
             case 3:
                 playerObject.transform.position = save3.transform.position;
                 break;
+            case 4:
+                playerObject.transform.position = save4.transform.position;
+                break;
+            case 5:
+                playerObject.transform.position = save5.transform.position;
+                break;
             default:
                 Debug.Log("Save Point value is wrong! The initial value has to be 0");
                 break;
+            }
         }
         // To stop previous movement
         rb.velocity = Vector3.zero;

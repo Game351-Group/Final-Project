@@ -18,9 +18,11 @@ public class PlayerSystem : MonoBehaviour
     private IngameUI ingameUI;
     private GameManager gameManager;
     private Player player;
+    private  GameObject[] totalFish;
     // Start is called before the first frame update
     void Start()
     {
+        totalFish = GameObject.FindGameObjectsWithTag("Collectable"); // Automatically count total fishes
         ingameUI = GameObject.Find("Canvas").GetComponent<IngameUI>();
         gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -37,6 +39,7 @@ public class PlayerSystem : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         // When player hits a cat tower, make it as a last save point, and disable this object
+        // Earlier save points do not overwrite later save points
         if(other.name == "CatTower1" && save < 1) {
             save = 1;
             other.gameObject.SetActive(false);
@@ -45,6 +48,12 @@ public class PlayerSystem : MonoBehaviour
             other.gameObject.SetActive(false);
         }else if(other.name == "CatTower3" && save < 3) {
             save = 3;
+            other.gameObject.SetActive(false);
+        }else if(other.name == "CatTower4" && save < 4) {
+            save = 4;
+            other.gameObject.SetActive(false);
+        }else if(other.name == "CatTower5" && save < 5) {
+            save = 5;
             other.gameObject.SetActive(false);
         }
 
@@ -58,33 +67,62 @@ public class PlayerSystem : MonoBehaviour
         if(other.tag == "Obstacles" ) {
             StartCoroutine(LoseControl());
             ingameUI.LoseLife(--life);
-            gameManager.respawn(gameObject, false);
+            gameManager.respawn(gameObject, false, false);
         }
 
         // When player falls into water, player loses 1 life and respawn
         if(other.tag == "Water"){
-            StartCoroutine(ChangeImage());
+            StartCoroutine(ChangeImage(false));
             ingameUI.LoseLife(--life);
-            gameManager.respawn(gameObject, true);
+            gameManager.respawn(gameObject, true, false);
         }
 
+        // When player falls into water, player loses 1 life and respawn
+        if(other.tag == "Lava"){
+            StartCoroutine(ChangeImage(true));
+            ingameUI.LoseLife(--life);
+            gameManager.respawn(gameObject, true, true);
+        }
+
+        // Hidden Level Checker, the score should be equal to the total fish on the map
         if(other.name == "hidden"){
-            if(score == 16){
-            SceneManager.LoadScene("HiddenLevel");
+            if(score == totalFish.Length){
+                SceneManager.LoadScene("HiddenLevel");
             }else{
                 StartCoroutine(ShowMessage());
             }
         }
+
+        // Goal
+        if(other.tag == "Yarn"){
+            SceneManager.LoadScene("Victory");
+        }
+
+        // Hidden Goal
+        if(other.name == "hiddenGoal"){
+            SceneManager.LoadScene("HiddenVictory");
+            
+        }
     }
 
-    // To show the underwater image
-    private IEnumerator ChangeImage() {
-        Image underwaterImage = GameObject.Find("Underwater").GetComponent<Image>();
-        if (underwaterImage != null) {
-            underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0.9f);
-            StartCoroutine(LoseControl());
-            yield return new WaitForSeconds(1);
-            underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0f);
+    // To show the underwater or lava image
+    private IEnumerator ChangeImage(bool hidden) {
+        if(!hidden){
+            Image underwaterImage = GameObject.Find("Underwater").GetComponent<Image>();
+            if (underwaterImage != null) {
+                underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0.9f);
+                StartCoroutine(LoseControl());
+                yield return new WaitForSeconds(1);
+                underwaterImage.color = new Color(underwaterImage.color.r, underwaterImage.color.g, underwaterImage.color.b, 0f);
+            }
+        }else{
+            Image underlavaImage = GameObject.Find("UnderLava").GetComponent<Image>();
+            if (underlavaImage != null) {
+                underlavaImage.color = new Color(underlavaImage.color.r, underlavaImage.color.g, underlavaImage.color.b, 0.9f);
+                StartCoroutine(LoseControl());
+                yield return new WaitForSeconds(1);
+                underlavaImage.color = new Color(underlavaImage.color.r, underlavaImage.color.g, underlavaImage.color.b, 0f);
+            }
         }
     }
 

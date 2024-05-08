@@ -11,6 +11,8 @@ TagManager:
   - Snow
   - Ground
   - Obstacles
+  - Lava
+  - Yarn
   layers:
   - Default
   - TransparentFX
