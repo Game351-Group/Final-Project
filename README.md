@@ -7,35 +7,58 @@ Game Description: Mittens, a lovely little white cat, had lost his yarn and must
 Topics Implemented:
 	
 Terrains and Meshes:
+
 Cutscene map - Charis Pace
+
 Main level (Mountain island and platforms) - Charis Pace
+
 Main level (Tutorial Island and platforms) - Sage Ashur Newton
+
 Ocean, Fog, and Lava planes + materials - Charis Pace
+
 Hidden level Volcano + Platforms - Sage Ashur Newton
-Collectable + Obstacle + Save Point placements - Sage Ashur Newton + Charis Pace + Dongyoung Yang		
+
+Collectable + Obstacle + Save Point placements - Sage Ashur Newton + Charis Pace + Dongyoung Yang
+
+
 
 Scripting and OOP:
+
 Scripts: GameManager, HiddenManager, IngameUI, MenuButtons, Player, PlayerSystem, SawMoving, SoundManager - Dongyoung Yang
+
 Scripts: AnimationController, AutoDestroy, Obstacle, PlayerSounds, Spin - Charis Pace
+
 OOP implementation + comments - Dongyoung Yang
+
 All scene transitions + game states - Dongyoung Yang
 
+
 Animation and Motion:
+
 Animations for cat model - Charis Pace
+
 Moving platforms + moving Obstacles - Dongyoung Yang
+
 Cutscenes (Start + End) - Sage Ashur Newton
 
+
 Physics and Particles:
+
 All Physics Implementations + Scripting + Colliders - Dongyoung Yang
+
 All Particle Systems - Charis Pace
 
+
 Audio and Game Mechanics:
+
 All Audio Implementations (excluding hidden level victory music and 
 pause menu button clicks) - Charis Pace
+
 Hidden level victory music + pause menu button clicks - Dongyoung Yang
+
 Game Mechanics: - Dongyoung Yang
   Player Movements + cameras
-  Damage inflicted by water + respawn
+  Damage inflicted by water + respawn	
   Damage inflicted by obstacles
   Death Mechanics (transition to Game Over scene)
   SavePoint Mechanics (collision with a cat tower)
@@ -46,20 +69,31 @@ Game Mechanics: - Dongyoung Yang
   (all implemented by Dongyoung Yang)
 
 User Interface and HUD:
+
 All UI and HUD implementations + Scripts + Images + Volume Control - Dongyoung Yang
+
 Game Over scene + Victory Scene + Main Menu Scene + Hidden Level Victory Scene - 
 Dongyoung Yang
 
 Button Mapping:
 
+
 W: Move forwards
+
 A: Move left
+
 S: Move backwards
+
 D: Move right
+
 Space: Jump
+
 M: Meow (cycles through 3 random meow sounds)
+
 Esc: Pause
+
 Left Mouse Button: Click menu buttons
+
 
 References: 
 
@@ -87,7 +121,7 @@ https://pixabay.com/sound-effects/water-splash-199583/
 Model + Animations:
 https://assetstore.unity.com/packages/3d/characters/animals/lowpoly-toon-cat-lite-66083
 
-Terrain + Materials:
+Terrain + Materials + Meshes:
 https://assetstore.unity.com/packages/3d/3le-low-poly-cloud-pack-65911
 https://assetstore.unity.com/packages/2d/textures-materials/sky/free-stylized-skybox-212257
 https://assetstore.unity.com/packages/3d/props/furniture/low-poly-simple-furniture-free-240197
