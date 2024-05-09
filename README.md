@@ -96,7 +96,7 @@ Esc: Pause
 
 Left Mouse Button: Click menu buttons
 
-Packages Used: Probuilder, Universal Rendering Pipeline, Shader Graph
+Packages Used: Probuilder, Universal Rendering Pipeline, Shader Graph, Cinemachine
 
 References:
 
