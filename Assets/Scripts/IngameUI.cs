@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class IngameUI : MonoBehaviour
 {
-    [SerializeField]
-    private Text currentLifeText, fishScore;
+    public Text currentLifeText;
+    public Text fishScore;
     private int totalLife;
     private PlayerSystem playerSystem;
     // Start is called before the first frame update
