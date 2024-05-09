@@ -1,4 +1,9 @@
-Note: upon first installation, all scenes may need to be ran to ensure renderings have loaded properly.
+Note: upon first installation, all scenes may need to be ran to ensure renderings have loaded properly (this is because the library folder is deleted to reduce the size of the project and is created automatically the first time you run the project).
+
+Known Bugs:
+Sometimes the lighting is weird. But it's fixed when I reload the scene or project, and it's fine when I build the game. Same issue with https://discussions.unity.com/t/lights-get-darker-when-loading-scene/175994
+The cat stops when trying to climb on sloping terrain so you need to jump sometimes to climb on (but doesn't happen when going down). This could be due to the collider. We couldn't find a mass for the cat's mass collider, so we just used the sphere collider.
+
 
 Design Overview:
 
