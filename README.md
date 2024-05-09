@@ -1,3 +1,5 @@
+Note: upon first installation, all scenes may need to be ran to ensure renderings have loaded properly.
+
 Design Overview:
 
 Game Name: Mitten’s Quest For The Lost Yarn
@@ -56,7 +58,7 @@ pause menu button clicks) - Charis Pace
 
 Hidden level victory music + pause menu button clicks - Dongyoung Yang
 
-Game Mechanics: - Dongyoung Yang
+Game Mechanics + Scripts: - Dongyoung Yang
   Player Movements + cameras
   Damage inflicted by water + respawn	
   Damage inflicted by obstacles
@@ -94,8 +96,9 @@ Esc: Pause
 
 Left Mouse Button: Click menu buttons
 
+Packages Used: Probuilder, Universal Rendering Pipeline, Shader Graph
 
-References: 
+References:
 
 Sounds:
 https://pixabay.com/sound-effects/underwater-loop-amb-6182/
