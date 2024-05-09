@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HiddenVictory.unity
     guid: 478d20ff04ad0d1479d8b57e858a8d2e
+  - enabled: 1
+    path: Assets/Scenes/CutScene.unity
+    guid: a6c77932049243648996067b02916042
+  - enabled: 1
+    path: Assets/Scenes/EndingCutScene.unity
+    guid: bf5e3d8c7d38f8c43b2b306550922414
   m_configObjects: {}

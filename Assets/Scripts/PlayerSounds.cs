@@ -7,6 +7,8 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField]
     private GameObject splashVFX;
     [SerializeField]
+    private GameObject sizzleVFX;
+    [SerializeField]
     private AudioSource collect;
     [SerializeField]
     private AudioSource grassWalk;
@@ -71,6 +73,10 @@ public class PlayerSounds : MonoBehaviour
         if (other.tag == "Water")
         {
             Instantiate(splashVFX, transform.position, splashVFX.transform.rotation);
+        }
+        else if (other.tag == "Lava")
+        {
+            Instantiate(sizzleVFX, transform.position, sizzleVFX.transform.rotation);
         }
         else if (other.tag == "Collectable")
         {

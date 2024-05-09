@@ -60,25 +60,38 @@ public class Player : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
+        if (collision == null || collision.transform == null || collision.transform.parent == null)
+        {
+            return;
+        }
+
         if (collision.transform.parent.CompareTag("Ground"))
         {
             isGrounded = true;
         }
         
-        if(collision.transform.parent.name == "Clouds"){
+        if (collision.transform.parent.name == "Clouds")
+        {
             isCloud = true;
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
+        if (collision == null || collision.transform == null || collision.transform.parent == null)
+        {
+            return;
+        }
+
         if (collision.transform.parent.CompareTag("Ground"))
         {
             isGrounded = false;
         }
 
-        if(collision.transform.parent.name == "Clouds"){
+        if (collision.transform.parent.name == "Clouds")
+        {
             isCloud = false;
         }
     }
+
 }

@@ -10,6 +10,11 @@ public class MenuButtons : MonoBehaviour
     void Start(){
         Cursor.visible = true;
     }
+    public void LoadCutScene()
+    {
+        click.PlayOneShot(click.clip, .7f);
+        SceneManager.LoadScene("CutScene");
+    }
     public void LoadMainMenu()
     {
         click.PlayOneShot(click.clip, .7f);

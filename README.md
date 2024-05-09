@@ -26,13 +26,14 @@ Collectable + Obstacle + Save Point placements - Sage Ashur Newton + Charis Pace
 
 Scripting and OOP:
 
-Scripts: GameManager, HiddenManager, IngameUI, MenuButtons, Player, PlayerSystem, SawMoving, SoundManager - Dongyoung Yang
+Scripts: GameManager, HiddenManager, IngameUI, MenuButtons, Player, PlayerSystem, SawMoving, SoundManager, AfterCutScene - Dongyoung Yang
 
 Scripts: AnimationController, AutoDestroy, Obstacle, PlayerSounds, Spin - Charis Pace
 
 OOP implementation + comments - Dongyoung Yang
 
 All scene transitions + game states - Dongyoung Yang
+
 
 
 Animation and Motion:
@@ -44,11 +45,13 @@ Moving platforms + moving Obstacles - Dongyoung Yang
 Cutscenes (Start + End) - Sage Ashur Newton
 
 
+
 Physics and Particles:
 
 All Physics Implementations + Scripting + Colliders - Dongyoung Yang
 
 All Particle Systems - Charis Pace
+
 
 
 Audio and Game Mechanics:
@@ -70,6 +73,8 @@ Game Mechanics + Scripts: - Dongyoung Yang
   Hidden Level Requirements (all fishes must be collected to unlock level)
   (all implemented by Dongyoung Yang)
 
+
+
 User Interface and HUD:
 
 All UI and HUD implementations + Scripts + Images + Volume Control - Dongyoung Yang
@@ -77,8 +82,9 @@ All UI and HUD implementations + Scripts + Images + Volume Control - Dongyoung Y
 Game Over scene + Victory Scene + Main Menu Scene + Hidden Level Victory Scene - 
 Dongyoung Yang
 
-Button Mapping:
 
+
+Button Mapping:
 
 W: Move forwards
 
@@ -92,11 +98,15 @@ Space: Jump
 
 M: Meow (cycles through 3 random meow sounds)
 
-Esc: Pause
+Esc: Pause, Skip during the cutscene
 
 Left Mouse Button: Click menu buttons
 
+
+
 Packages Used: Probuilder, Universal Rendering Pipeline, Shader Graph, Cinemachine
+
+
 
 References:
 

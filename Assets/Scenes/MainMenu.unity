@@ -208,8 +208,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 834777531}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: LoadCutScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
